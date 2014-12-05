@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
 <!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
@@ -29,12 +29,47 @@
       <div id="main" role="main">
         <div class="download-bar">
         <div class="inner">
-          <a href="https://github.com/mwb1219" class="code">View 马文斌@博客 on GitHub</a>
+          <a href="https://github.com/mwb1219" class="code">阅读正文</a>
         </div>
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
-          <p>给V就</p>
+         <!-- Loop output paged posts -->
+		{% for post in paginator.posts %}
+		<div class="pre">
+			<h2>
+ 			 <a href="{{ post.url }}">
+   			 {{ post.title }}
+  			</a> 
+  			<div class="post-date">
+		{	{ post.date | date_to_string }}
+  			</div>
+			</h2>
+		</div>
+		{% endfor %}
+		<!-- Pager indicator -->
+<ul class="pager">
+  {% if paginator.previous_page %} {% if paginator.previous_page == 1 %}
+  <li class="previous">
+    <a href="{{ site.url }}/">
+      &larr; 上一页
+    </a>
+  </li>
+  {% else %}
+  <li class="previous">
+    <a href="{{ site.url }}/page{{ paginator.previous_page }}">
+      &larr; Older
+    </a>
+  </li>
+  {% endif %} {% endif %} {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ site.url }}/page{{ paginator.next_page }}">
+      下一页 &rarr;
+    </a>
+  </li>
+  {% endif %}
+</ul>
+
         </article>
       </div>
     </div>
@@ -44,8 +79,9 @@
       <p><a href="https://github.com/mwb1219" class="avatar"><img src="https://avatars1.githubusercontent.com/u/9292203?v=3&amp;s=60" width="48" height="48"></a>View <a href="https://github.com/mwb1219">mwb1219</a> on <a href="https://www.github.com">GitHub</a></p>
 
       </div>
-      <div class="creds">
-        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      <div class="creThis page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a>i>
+  {% endif %}
+</ul></small>
       </div>
     </footer>
   </div>
