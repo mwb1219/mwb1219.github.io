@@ -6,10 +6,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <link rel="stylesheet" href="/stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="/javascripts/script.js"></script>
 
   <title>马文斌@博客</title>
   <meta name="description" content="">
@@ -35,6 +35,69 @@
         </div>
         <article class="markdown-body">
 		<!-- Loop output paged posts -->
+
+<div class="pre">
+<h2>
+  <a href="/2014/12/Linux-Samba.html">
+    Linux环境下Samba服务器的配置
+  </a> 
+  <div class="post-date">
+	01 Dec 2014
+  </div>
+</h2>
+<!--
+<hr>
+	<h2>一、Samba服务器的配置步骤</h2>
+
+<pre><code>1、安装有关Samba的RPM包(samba、samba-common、samba-client)
+2、创建Samba用户
+3、修改配置文件
+4、重启samba服务
+5、设置目录访问权限
+6、测试
+</code></pre>
+
+<h3>1.1、安装RPM包(缺省情况下安装了samba的相关软件包，可以用如下命令查看)</h3>
+
+<pre><code>[root@localhost ~]#rpm -qa | grep samba
+强制安装：-f       
+跳过依赖安装：--nodeps
+samba -----samba服务器程序的所有文件
+samba-common -----提供了Samba服务器和客户机中都必须使用的公共文件
+samba-client -----提供了Samba客户机的所有文件
+samba-swat -----以Web界面的形式提供了对Samba服务器的管理功能
+</code></pre>
+
+<h3>1.2、创建samba用户</h3>
+
+<pre><code>[root@localhost ~]#smbpasswd -a user1 
+（“-a”是创建samba用户，“-x”是删除samba用户，“-d”是禁用samba用户帐号，“-e”是启用samba用户帐号）
+[root@localhost ~]#smbpasswd -a user2 
+[root@localhost ~]#smbpasswd -a user3 
+</code></pre>
+
+<hr>
+<p> <a href="/2014/12/Linux-Samba.html" style="float:right"><span >阅读全文 &raquo; </span></a></p>
+-->
+</div>
+
+<div class="pre">
+<h2>
+  <a href="/2014/11/Jekyll-Install.html">
+    Jekyll安装及写静态博客
+  </a> 
+  <div class="post-date">
+	27 Nov 2014
+  </div>
+</h2>
+<!--
+<hr>
+	<h2>1、下载、安装 ruby 和 DEVELOPMENT KIT</h2>
+
+<hr>
+<p> <a href="/2014/11/Jekyll-Install.html" style="float:right"><span >阅读全文 &raquo; </span></a></p>
+-->
+</div>
 
 <div class="pre">
 <h2>
@@ -99,83 +162,9 @@ _sites        预览时产生的文件都放在该文件夹中
 -->
 </div>
 
-<div class="pre">
-<h2>
-  <a href="/2014/11/Distributed-Message-Passing-Frame.html">
-    Curator-Framework开源Zookeeper快速开发框架介绍
-  </a> 
-  <div class="post-date">
-	26 Nov 2014
-  </div>
-</h2>
-<!--
-<hr>
-	<p>Zookeeper 客户端框架 Curator-Framework 来自Netflix公司，现在归Apache，目前版本2.0.1！</p>
-
-<hr>
-<p> <a href="/2014/11/Distributed-Message-Passing-Frame.html" style="float:right"><span >阅读全文 &raquo; </span></a></p>
--->
-</div>
-
-<div class="pre">
-<h2>
-  <a href="/2014/11/Distributed-Message-Passing-Config.html">
-    Zookeeper和Curator-Framework实践系列之： 配置管理
-  </a> 
-  <div class="post-date">
-	26 Nov 2014
-  </div>
-</h2>
-<!--
-<hr>
-	<p>看过Zookeeper相关文档后都知道它可以实现分布式集群的配置管理，本文以一个简单的实例来演示它是如何实现的并工作的。</p>
-
-<hr>
-<p> <a href="/2014/11/Distributed-Message-Passing-Config.html" style="float:right"><span >阅读全文 &raquo; </span></a></p>
--->
-</div>
-
-<div class="pre">
-<h2>
-  <a href="/2014/11/Distributed-Message-Passing.html">
-    Zookeeper和Curator-Framework实践之：分布式消息队列
-  </a> 
-  <div class="post-date">
-	26 Nov 2014
-  </div>
-</h2>
-<!--
-<hr>
-	<h2>一、队列应用场景</h2>
-
-<hr>
-<p> <a href="/2014/11/Distributed-Message-Passing.html" style="float:right"><span >阅读全文 &raquo; </span></a></p>
--->
-</div>
-
-<div class="pre">
-<h2>
-  <a href="/2014/11/02-Jenkins-Config.html">
-    Jenkins配置
-  </a> 
-  <div class="post-date">
-	25 Nov 2014
-  </div>
-</h2>
-<!--
-<hr>
-	<h2>一、系统管理</h2>
-
-<p>在已运行的Jenkins主页中，点击左侧的系统管理进入如下界面：</p>
-
-<hr>
-<p> <a href="/2014/11/02-Jenkins-Config.html" style="float:right"><span >阅读全文 &raquo; </span></a></p>
--->
-</div>
-
 
 <!-- Pager indicator -->
-<ul class="pager">
+
    
   <li class="previous">
     <a href="/">
@@ -196,13 +185,8 @@ _sites        预览时产生的文件都放在该文件夹中
     </div>
     <footer>
       <div class="owner">
-
       <p><a href="https://github.com/mwb1219" class="avatar"><img src="https://avatars1.githubusercontent.com/u/9292203?v=3&amp;s=60" width="48" height="48"></a>View <a href="https://github.com/mwb1219">mwb1219</a> on <a href="https://www.github.com">GitHub</a></p>
 
-      </div>
-      <div class="creThis page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a>i>
-
-</ul></small>
       </div>
     </footer>
   </div>
