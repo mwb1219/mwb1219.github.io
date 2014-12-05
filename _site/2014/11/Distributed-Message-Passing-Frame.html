@@ -1,0 +1,132 @@
+﻿﻿<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>马文斌@博客</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">马文斌@博客</h1>
+    </header>
+    <div id="container">
+      <p class="tagline"></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/mwb1219" class="code">阅读正文</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+		
+
+
+<!-- Blog Post -->
+<!-- Title -->
+<h2>
+  Curator-Framework开源Zookeeper快速开发框架介绍
+  <div class="post-date"><a href="https://github.com/panxw/panxw.github.com/edit/master/_posts/2014-11-26-Distributed-Message-Passing-Frame.md" target="_blank">纠错</a>&nbsp;&nbsp;
+	<span class="glyphicon glyphicon-time"></span>
+	26 Nov 2014
+  </div>
+</h2>
+<!-- Author -->
+<hr>
+<p>Zookeeper 客户端框架 Curator-Framework 来自Netflix公司，现在归Apache，目前版本2.0.1！</p>
+
+<p>在使用ZK开发时会遇到让人头疼的几个问题，ZK连接管理、SESSION失效等一些异常问题的处理，Curator替我们解决了这些问题，通过对ZK连接状态的监控来做出相应的重连等操作，并触发事件！</p>
+
+<p>更好的地方是Curator对ZK的一些应用场景提供了非常好的实现，而且有很多扩充，这些都符合ZK使用规范。
+主要组件:</p>
+
+<ol>
+<li>Recipes， ZooKeeper的系列recipe实现, 基于 Curator Framework.</li>
+<li>Framework， 封装了大量ZooKeeper常用API操作，降低了使用难度, 基于Zookeeper增加了一些新特性，对ZooKeeper链接的管理，对链接丢失自动重新链接。</li>
+<li>Utilities，一些ZooKeeper操作的工具类包括ZK的集群测试工具路径生成等非常有用，在Curator-Client包下org.apache.curator.utils。</li>
+<li>Client，ZooKeeper的客户端API封装，替代官方 ZooKeeper class，解决了一些繁琐低级的处理，提供一些工具类。</li>
+<li>Errors，异常处理, 连接异常等</li>
+<li>Extensions，对curator-recipes的扩展实现，拆分为curator-:stuck_out_tongue_closed_eyes:iscovery</li>
+<li>curator-:stuck_out_tongue_closed_eyes:iscovery-server提供基于RESTful的Recipes WEB服务.</li>
+</ol>
+
+
+<p>其中Curator-Recipes包括有Elections（领导选举）、Locks（锁）、Queues（队列）、Barriers（屏障）、Counters（共享计数器）、Caches（状态管理，可用做配置管理、缓存等）
+实践</p>
+
+<p>官方提供学习实例curator-examples，可通过Maven下载，curator系列Maven地址 ：<a href="maven:org.apache.curator">maven:org.apache.curator</a></p>
+
+<p>基于Curator做几个常用场景的开发实例：</p>
+
+<p><strong>配置管理：</strong> <a href="http://www.cnblogs.com/xguo/archive/2013/06/10/3130589.html">http://www.cnblogs.com/xguo/archive/2013/06/10/3130589.html</a></p>
+
+<p><strong>分布式队列处理：</strong> <a href="http://www.cnblogs.com/xguo/archive/2013/06/10/3130589.html">http://www.cnblogs.com/xguo/archive/2013/06/10/3130589.html</a></p>
+
+<br/>
+<div style="margin-top:10px;margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/2014/11/Distributed-Message-Passing-Config.html">
+      Zookeeper和Curator-Framework实践系列之： 配置管理
+    </a>
+  </span>
+   
+  
+  <span class="prev">
+    下篇：
+    <a href="/2014/11/Distributed-Message-Passing-ZookKeeper.html">
+      ZooKeeper安装
+    </a>
+  </span>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+    <!-- UY BEGIN -->
+  <div id="uyan_frame">
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1511840">
+  </script>
+  <!-- UY END --> 
+</div>
+
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+
+      <p><a href="https://github.com/mwb1219" class="avatar"><img src="https://avatars1.githubusercontent.com/u/9292203?v=3&amp;s=60" width="48" height="48"></a>View <a href="https://github.com/mwb1219">mwb1219</a> on <a href="https://www.github.com">GitHub</a></p>
+
+      </div>
+      <div class="creThis page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a>i>
+
+</ul></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/mwb1219/mwb1219.github.io/tarball/master" class="tar">tar</a><a href="https://github.com/mwb1219/mwb1219.github.io/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+  
+</body>
+</html>

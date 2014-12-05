@@ -34,7 +34,77 @@
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
-		{{content}}
+		
+
+
+<!-- Blog Post -->
+<!-- Title -->
+<h2>
+  Jenkins的安装步骤
+  <div class="post-date"><a href="https://github.com/panxw/panxw.github.com/edit/master/_posts/2014-11-25-01-Jenkins-Install.md" target="_blank">纠错</a>&nbsp;&nbsp;
+	<span class="glyphicon glyphicon-time"></span>
+	25 Nov 2014
+  </div>
+</h2>
+<!-- Author -->
+<hr>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;  Jenkins是一款Java平台的开源持续集成（Continuous Integration，CI）引擎。它易于安装，配置简单，丰富的插件支持，高度的可扩展性，强大的分布式构建能力都让它在众多的CI引擎中脱颖而出。主页：<a href="http://jenkins-ci.org/">http://jenkins-ci.org/</a></p>
+
+<h2>一、安装方法主要有两种</h2>
+
+<h3>1.1、war包方式</h3>
+
+<p>对于linux和windows，直接下载war并放置到server(eg tomcat)下面，直接运行即可</p>
+
+<h3>1.2、通过java -jar jenkins.war方式运行</h3>
+
+<h2>二、Jenkins在Linux下的安装步骤</h2>
+
+<p>linux平台下面，使用yum进行安装，具体命令如下：</p>
+
+<p><strong>sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo <br/>
+sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key  <br/>
+yum install jenkins</strong></p>
+
+<h2>三、Jenkins在Windows下的安装步骤</h2>
+
+<ol>
+<li>下载jenkins.war, 拷贝到c:\jenkins下</li>
+<li>然后运行java -jar jenkins.war.</li>
+<li>访问http://localhost:8080</li>
+</ol>
+
+
+<br/>
+<div style="margin-top:10px;margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/2014/10/Memcached-Basic.html">
+      memcached究竟是如何运作的
+    </a>
+  </span>
+   
+  
+  <span class="prev">
+    下篇：
+    <a href="/2014/11/02-Jenkins-Config.html">
+      Jenkins配置
+    </a>
+  </span>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+    <!-- UY BEGIN -->
+  <div id="uyan_frame">
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1511840">
+  </script>
+  <!-- UY END --> 
+</div>
+
         </article>
       </div>
     </div>

@@ -1,0 +1,286 @@
+﻿﻿<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>马文斌@博客</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">马文斌@博客</h1>
+    </header>
+    <div id="container">
+      <p class="tagline"></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/mwb1219" class="code">阅读正文</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+		
+
+
+<!-- Blog Post -->
+<!-- Title -->
+<h2>
+  Linux环境下DNS服务器的配置
+  <div class="post-date"><a href="https://github.com/panxw/panxw.github.com/edit/master/_posts/2014-12-02-Linux-DNS.md" target="_blank">纠错</a>&nbsp;&nbsp;
+	<span class="glyphicon glyphicon-time"></span>
+	02 Dec 2014
+  </div>
+</h2>
+<!-- Author -->
+<hr>
+<h2>1.安装DNS所需的rpm包</h2>
+
+<pre><code>rpm -ivh bind-9.2.2-21.i386.rpm  //BIND服务器软件包
+rpm -ivh bind-utils-9.2.2-21.i386.rpm  //DNS测试程序软件包
+rpm -ivh redhat-config-bind-1.9.0-13.i386.rpm
+rpm -ivh caching-nameserver-7.2.7-.noarch.rpm //DNS高速缓存服务器软件包
+</code></pre>
+
+<h2>2.增加主DNS配置文件</h2>
+
+<p>  vi /etc/named.conf</p>
+
+<pre><code>//定义全局配置语句  
+  options {
+//定义服务器区配置文件工作目录
+  directory "/var/named/";
+  };
+//定义rndc命令使用的控制通道  
+  # controls { inet 127.0.0.1 allow { localhost; } keys { rndckey; }; };
+//定义根区生命  
+  zone "." {
+  type hint;
+  file "named.ca";
+  };
+//定义localhost正向解析区声明  
+  zone "localhost" {
+  type master;
+  file "localhost.zone";
+  };
+//定义localhost反向解析区声明  
+  zone "0.0.127.in-addr.arpa" {
+  type master;
+  file "0.0.127.in-addr.arpa.zone";
+  };
+//定义自己创建的主DNS的正向解析区  
+  zone "xinhua.com" {
+  type master;
+  file "xinhua.com.hosts";
+  };
+//定义自己创建的主DNS的反向解析区  
+  zone "0.168.192.in-addr.arpa" {
+  type master;
+  file "192.168.0.rev";
+  };
+//包含共享密匙文件
+  include "/etc/rndc.key";
+</code></pre>
+
+<p>注: 下载named.ca
+   ftp://ftp.rs.internic.net/domain/named.root</p>
+
+<p>  下载后改名为named.ca 存在/var/named目录下</p>
+
+<p>3.编辑主DNS的正向区域文件<br/>
+       #cd /var/named
+       #touch xinhua.com.hosts    192.168.0.rev
+  vi /var/named/xinhua.com.hosts<br/>
+  $TTL     86400     <br/>
+        //设置SOA RR    <br/>
+         @                      IN               SOA           dns.xinhua.com.   root.dns.xinhua.com (
+                                                                  2010041501
+                                                                  3H
+                                                                  15M                                                                       <br/>
+                                                                       1W
+                                                                 1D   )</p>
+
+<pre><code>                          IN              NS             dns.xinhua.com.
+                          IN               MX             5           mail.xinhua.com.
+</code></pre>
+
+<p>  dns                      IN               A                192.168.0.2
+  www                     IN                A                192.168.0.3
+  news                     IN              CNAME       www</p>
+
+<p>4.设置主DNS的反向区域</p>
+
+<h1>vi /var/named/192.168.0.rev</h1>
+
+<p>  $TTL     86400          <br/>
+         @                      IN               SOA           dns.xinhua.com.   root.dns.xinhua.com (
+                                                                  2010041501
+                                                                  3H
+                                                                  15M                                                                       <br/>
+                                                                       1W
+                                                                 1D   )</p>
+
+<pre><code>                          IN              NS            dns.xinhua.com.
+</code></pre>
+
+<p>  2                          IN               A                dns.xinhua.com.
+  3                         IN                A               www.xinhua.com.</p>
+
+<p>  ok了，就是这些配置文件。为了方便以后查资料，所以把配置过程写下来
+  /etc/rc.d/iinit.d/named restart   或者serviec   named      restart</p>
+
+<p>  重启一下服务就可以用了</p>
+
+<p>5.配置辅助DNS配置文件</p>
+
+<p>  vi /etc/named.conf
+//定义全局配置语句<br/>
+  options {
+//定义服务器区配置文件工作目录
+  directory "/var/named/";
+  };
+//定义rndc命令使用的控制通道<br/>
+  # controls { inet 127.0.0.1 allow { localhost; } keys { rndckey; }; };
+//定义根区生命<br/>
+  zone "." {
+  type hint;
+  file "named.ca";
+  };
+//定义localhost正向解析区声明<br/>
+  zone "localhost" {
+  type master;
+  file "localhost.zone";
+  };
+//定义localhost反向解析区声明<br/>
+  zone "0.0.127.in-addr.arpa" {
+  type master;
+  file "0.0.127.in-addr.arpa.zone";
+  };
+//定义自己创建的辅助DNS的正向解析区<br/>
+  zone "xinhua.com" {
+  type slave;
+  file "xinhua.com.hosts";
+       masters {192.168.0.2; };
+  };
+//定义自己创建的辅助DNS的反向解析区<br/>
+  zone "0.168.192.in-addr.arpa" {
+  type slave;
+  file "192.168.0.rev";
+        masters {192.168.0.2; };
+  };
+//包含共享密匙文件
+  include "/etc/rndc.key";</p>
+
+<p>6.编辑辅助DNS的正向区域文件.反向区域</p>
+
+<h1>cd /var/named</h1>
+
+<h1>touch xinhua.com.hosts    192.168.0.rev</h1>
+
+<pre><code>   ok了，就是这些配置文件。
+</code></pre>
+
+<p>  /etc/rc.d/iinit.d/named restart   或者serviec   named      restart</p>
+
+<p>  重启一下服务,然后配置辅助DNS需要测试并显示主DNS配置信息
+      #host -a   xinhua.com             或者            #nslookup       <br/>
+7.配置域名服务器转发
+当本地域名服务器无法解析时,将请求发往202.102.224.68; 202.102.227.68进行解析可表示为
+options {
+              forwards   {202.102.224.68; 202.102.227.68; };
+};</p>
+
+<p>8.配置DNS服务器作简单的负载均衡;</p>
+
+<h1>vi /var/named/xinhua.com.hosts</h1>
+
+<p>//添加如下两行
+www              IN                A                      192.168.0.5
+www              IN                A                      192.168.0.15
+www              IN                A                      192.168.0.25</p>
+
+<h1>vi /var/named/192.168.0.rev</h1>
+
+<p>//添加如下两行
+5                IN                 PTR                      www.xinhua.com.
+15              IN                 PTR                      www.xinhua.com.
+25              IN                 PTR                      www.xinhua.com.
+重新加载</p>
+
+<h1>rndc reload</h1>
+
+<p>9.直接域名解析
+xinhua.com.            IN                 A                      192.168.0.5 或者
+.                               IN                A                      192.168.0.5
+www                         IN                 A                       192.168.0.5
+10.实现泛域名解析
+*                              IN              A                192.168.0.5 或者
+*.xinhua.com.          IN             A                 192.168.0.5</p>
+
+<br/>
+<div style="margin-top:10px;margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/2014/12/Linux-Samba.html">
+      Linux环境下Samba服务器的配置
+    </a>
+  </span>
+   
+  
+  <span class="prev">
+    下篇：
+    <a href="/2014/12/Log4j.html">
+      Log4j学习教程
+    </a>
+  </span>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+    <!-- UY BEGIN -->
+  <div id="uyan_frame">
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1511840">
+  </script>
+  <!-- UY END --> 
+</div>
+
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+
+      <p><a href="https://github.com/mwb1219" class="avatar"><img src="https://avatars1.githubusercontent.com/u/9292203?v=3&amp;s=60" width="48" height="48"></a>View <a href="https://github.com/mwb1219">mwb1219</a> on <a href="https://www.github.com">GitHub</a></p>
+
+      </div>
+      <div class="creThis page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a>i>
+
+</ul></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/mwb1219/mwb1219.github.io/tarball/master" class="tar">tar</a><a href="https://github.com/mwb1219/mwb1219.github.io/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+  
+</body>
+</html>

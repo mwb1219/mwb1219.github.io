@@ -40,38 +40,97 @@
 <!-- Blog Post -->
 <!-- Title -->
 <h2>
-  {{ page.title }}
-  <div class="post-date"><a href="https://github.com/panxw/panxw.github.com/edit/master/{{ page.path }}" target="_blank">纠错</a>&nbsp;&nbsp;
+  Linux常用指令
+  <div class="post-date"><a href="https://github.com/panxw/panxw.github.com/edit/master/_posts/2014-12-04-Linux-Order.md" target="_blank">纠错</a>&nbsp;&nbsp;
 	<span class="glyphicon glyphicon-time"></span>
-	{{ page.date | date_to_string }}
+	04 Dec 2014
   </div>
 </h2>
 <!-- Author -->
 <hr>
-{{ content }}
+<pre><code>ntsysv：启动服务配置界面，随系统自动启动
+chkconfig --list ：查看linux下所有服务
+</code></pre>
+
+<h2>一、Linux环境下用户、组的操作</h2>
+
+<p><strong>1、建用户：</strong>、</p>
+
+<pre><code>adduser phpq                             //新建phpq用户
+passwd phpq                               //给phpq用户设置密码
+</code></pre>
+
+<p><strong>2、建工作组</strong></p>
+
+<pre><code>groupadd test                          //新建test工作组
+</code></pre>
+
+<p><strong>3、新建用户同时增加工作组</strong></p>
+
+<pre><code>useradd -g test phpq                      //新建phpq用户并增加到test工作组
+注：：-g 所属组 -d 家目录 -s 所用的SHELL
+</code></pre>
+
+<p><strong>4、给已有的用户增加工作组</strong></p>
+
+<pre><code>usermod -G groupname username
+或者：gpasswd -a user group
+</code></pre>
+
+<p><strong>5、临时关闭</strong>：在/etc/shadow文件中属于该用户的行的第二个字段（密码）前面加上<em>就可以了。想恢复该用户，去掉</em>即可。</p>
+
+<pre><code>或者使用如下命令关闭用户账号：
+passwd peter –l
+重新释放：
+passwd peter –u
+</code></pre>
+
+<p><strong>6、永久性删除用户账号</strong></p>
+
+<pre><code>userdel peter
+groupdel peter
+usermod –G peter peter   （强制删除该用户的主目录和主目录下的所有文件和子目录）
+</code></pre>
+
+<p><strong>7、从组中删除用户</strong></p>
+
+<pre><code>编辑/etc/group 找到GROUP1那一行，删除 A
+或者用命令
+gpasswd -d A GROUP
+</code></pre>
+
+<p><strong>8、显示用户信息</strong></p>
+
+<pre><code>id user
+cat /etc/passwd
+</code></pre>
+
+<p><strong>9、查看用户所在组</strong></p>
+
+<pre><code>groups user_name
+</code></pre>
+
 <br/>
 <div style="margin-top:10px;margin-bottom:10px">
-  {%if page.previous%}
+  
   <span class="next">
     上篇：
-    <a href="{{page.previous.url}}">
-      {{page.previous.title}}
+    <a href="/2014/12/Design-Mode.html">
+      单例模式
     </a>
   </span>
-  {%endif%} 
-  {%if page.next%}
-  <span class="prev">
-    下篇：
-    <a href="{{page.next.url}}">
-      {{page.next.title}}
-    </a>
-  </span>
-  {%endif%}
+   
+  
 </div>
 <hr>
 <!-- Blog Comments -->
 <div class="media">
-  {% include comment.html %} 
+    <!-- UY BEGIN -->
+  <div id="uyan_frame">
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1511840">
+  </script>
+  <!-- UY END --> 
 </div>
 
         </article>
