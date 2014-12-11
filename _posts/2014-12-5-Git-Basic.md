@@ -1,7 +1,7 @@
 ---
 layout: post
 category: "Git"
-title:  "Git基本语法学习笔记"
+title:  "Git笔记"
 tags: [Git]
 ---
 ##Git笔记
