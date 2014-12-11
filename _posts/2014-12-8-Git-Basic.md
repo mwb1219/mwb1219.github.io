@@ -1,3 +1,9 @@
+---
+layout: post
+category: "Git"
+title:  "Git基本语法学习笔记"
+tags: [Git]
+---
 ##Joda-Time的使用
 目的：Joda-Time 使时间和日期值变得易于管理、操作和理解。
 ###Joda简介
